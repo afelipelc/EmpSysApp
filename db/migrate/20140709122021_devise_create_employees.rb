@@ -8,7 +8,7 @@ class DeviseCreateEmployees < ActiveRecord::Migration
       #fields for complete my employee
       t.string :username, null: false, default: ""
       t.string :nombre, null: false, default: ""
-      t.string :role, null: false, default: ""
+      t.integer :role, null: false, default: 0
       t.boolean :activo, null: true, default: true
 
       ## Recoverable

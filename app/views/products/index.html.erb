@@ -1,0 +1,52 @@
+<%- model_class = Product -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => "Productos" %></h1>
+  <div class="pull-right" style="margin-top:12px">
+  <%= form_tag(products_path, method: "get", id: "productsfilter")  do%>
+    <span class="control-label"><strong>Ver por categoría:</strong></span>
+    <%= select_tag :categoria, options_for_select(Product::categoria.collect { |s| [s[0].gsub(/\bseleccionar\b/, 'Todas').humanize, s[0].gsub(/\bseleccionar\b/, 'todas')] }, selected: params[:categoria]) %>
+    <% end %>
+  </div>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:clave) %></th>
+      <th><%= model_class.human_attribute_name(:descripción) %></th>
+      <th><%= model_class.human_attribute_name(:precio) %></th>
+      <th><%= model_class.human_attribute_name(:categoría) %></th>
+      <th><%= model_class.human_attribute_name(:subcategoría) %></th>
+      <th><%= model_class.human_attribute_name(:ing) %></th>
+      <th><%= model_class.human_attribute_name(:bebida) %></th>
+      <th><%= model_class.human_attribute_name(:activo) %></th>
+      <th><%=t '.actions', :default => t("helpers.opción") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= link_to "PR"+product.id.to_s, edit_product_path(product) %></td>
+        <td><%= link_to product.descripcion, edit_product_path(product) %></td>
+        <td><%= product.precio %></td>
+        <td><%= product.categoria.humanize %></td>
+        <td><%= product.subcategoria.humanize %></td>
+        <td><%= product.noingredientes %></td>
+        <td><%= product.conbebida? ? "Si" : "No"%></td>
+        <td><%= product.activo? ? "Si" : "No" %></td>
+        <td>
+          <%= link_to t('.edit', :default => image_tag("icn_edit.png", :border => 0)),
+                      edit_product_path(product), :class => 'btn', :title=> 'Editar producto' %>
+          <%#= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      product_path(product),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.agregar_producto")),
+            new_product_path,
+            :class => 'btn btn-primary' %>

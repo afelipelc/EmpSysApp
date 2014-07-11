@@ -1,0 +1,58 @@
+<%= form_for @product, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group<%= @product.errors[:descripcion].any? ? " error" : "" %>">
+    <%= f.label "Descripción", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :descripcion, :class => 'text_field' %>
+      <span class="help-inline">
+      <%= @product.errors[:descripcion].any? ? @product.errors[:descripcion].to_s[/\w([^"]*)/] : "" %></span>
+    </div>
+  </div>
+  <div class="control-group<%= @product.errors[:precio].any? ? " error" : "" %>">
+    <%= f.label :precio, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :precio, :class => 'text_field' %>
+      <span class="help-inline">
+      <%= @product.errors[:precio].any? ? @product.errors[:precio].to_s[/\w([^"]*)/] : "" %></span>
+    </div>
+  </div>
+  <div class="control-group<%= @product.errors[:categoria].any? ? " error" : "" %>">
+    <%= f.label "Categoría", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :categoria, options_for_select(Product::categoria.collect { |s| [s[0].humanize, s[0]] }, selected: @product.categoria) %>
+      <span class="help-inline">
+      <%= @product.errors[:categoria].any? ? @product.errors[:categoria].to_s[/\w([^"]*)/] : "" %></span>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label "Subcategoría", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :subcategoria, options_for_select(Product::subcategoria.collect { |s| [s[0].humanize, s[0]] }, selected: @product.subcategoria) %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :no_ingredientes, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :noingredientes, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :conbebida, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.radio_button :conbebida, true %> Si &nbsp;&nbsp;
+      <%= f.radio_button :conbebida, false %> No
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :activo, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.radio_button :activo, true %> Si &nbsp;&nbsp;
+      <%= f.radio_button :activo, false %> No
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary', :value=>"Guardar" %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                products_path, :class => 'btn' %>
+  </div>
+<% end %>

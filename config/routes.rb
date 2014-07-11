@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
-  devise_for :employees
+  resources :ingredients
+
+  resources :products
+  resources :users
+  devise_for :employees#, controllers: { users: "users/sessions" }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'products#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

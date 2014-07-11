@@ -1,0 +1,16 @@
+<% case params[:controller] %>
+<% when "products" %>
+  <ul class="nav nav-list">
+    <li class="nav-header">En productos</li>
+    <li><%= link_to "Agregar producto",
+            new_product_path %></li>
+    <li><a></a></li>
+	<li><%= link_to "Ingredientes",
+            ingredients_path %></li>
+    <li><%= link_to "Extras", "additionals_path"  %></li>
+  </ul>
+<% else %>
+  <ul class="nav nav-list">
+	<li class="nav-header">...</li>
+  </ul>
+<% end %>
