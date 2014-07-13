@@ -1,0 +1,32 @@
+<%= form_for @extra, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group<%= @extra.errors[:nombre].any? ? " error" : "" %>">
+    <%= f.label :nombre, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :nombre, :class => 'text_field' %>
+      <span class="help-inline">
+      <%= @extra.errors[:nombre].any? ? @extra.errors[:nombre].to_s[/\w([^"]*)/] : "" %></span>
+    </div>
+  </div>
+  <div class="control-group<%= @extra.errors[:categoria].any? ? " error" : "" %>">
+    <%= f.label :aplica_en, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :categoria, options_for_select(Extra::categoria.collect { |s| [s[0].humanize, s[0]] }, selected: @extra.categoria) %>
+      <span class="help-inline">
+      <%= @extra.errors[:categoria].any? ? @extra.errors[:categoria].to_s[/\w([^"]*)/] : "" %></span>
+    </div>
+  </div>
+  <div class="control-group<%= @extra.errors[:costo].any? ? " error" : "" %>">
+    <%= f.label :costo, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :costo, :class => 'text_field' %>
+      <span class="help-inline">
+      <%= @extra.errors[:costo].any? ? @extra.errors[:costo].to_s[/\w([^"]*)/] : "" %></span>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancelar")),
+                extras_path, :class => 'btn' %>
+  </div>
+<% end %>

@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140709122021) do
+ActiveRecord::Schema.define(version: 20140711175653) do
 
   create_table "employees", force: true do |t|
     t.string   "email",                  default: "",   null: false
     t.string   "encrypted_password",     default: "",   null: false
     t.string   "username",               default: "",   null: false
     t.string   "nombre",                 default: "",   null: false
-    t.string   "role",                   default: "",   null: false
+    t.integer  "role",                   default: 0,    null: false
     t.boolean  "activo",                 default: true
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -35,5 +35,33 @@ ActiveRecord::Schema.define(version: 20140709122021) do
   add_index "employees", ["email"], name: "index_employees_on_email", unique: true, using: :btree
   add_index "employees", ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true, using: :btree
   add_index "employees", ["username"], name: "index_employees_on_username", unique: true, using: :btree
+
+  create_table "extras", force: true do |t|
+    t.string   "nombre"
+    t.integer  "categoria"
+    t.float  "costo",      precision: 10, scale: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "ingredients", force: true do |t|
+    t.string   "nombre",       null: false
+    t.integer  "categoria",    null: false
+    t.integer  "subcategoria"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "products", force: true do |t|
+    t.string   "descripcion",                    null: false
+    t.float    "precio",                         null: false
+    t.integer  "categoria",                      null: false
+    t.integer  "subcategoria"
+    t.integer  "noingredientes"
+    t.boolean  "conbebida",      default: false
+    t.boolean  "activo",         default: true,  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
