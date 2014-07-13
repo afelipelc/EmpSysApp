@@ -51,7 +51,6 @@
             <ul class="nav">
               <li><%= link_to "Productos", products_path  %></li>
               <li><%= link_to "Empleados", users_path  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
             </ul>
             <span class="navbar-text pull-right">
               <% if employee_signed_in? %>
@@ -74,8 +73,7 @@
         <div class="row">
           <div class="span9">
             <%= bootstrap_flash %>
-            <p class="notice"><%= notice %></p>
-            <p class="alert"><%= alert %></p>
+            <%= render :partial => 'shared/messages' %>
             <%= yield %>
           </div>
           <div class="span3">

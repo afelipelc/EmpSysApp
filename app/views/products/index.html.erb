@@ -27,7 +27,7 @@
       <tr>
         <td><%= link_to "PR"+product.id.to_s, edit_product_path(product) %></td>
         <td><%= link_to product.descripcion, edit_product_path(product) %></td>
-        <td><%= product.precio %></td>
+        <td><%= number_to_currency(product.precio) %></td>
         <td><%= product.categoria.humanize %></td>
         <td><%= product.subcategoria.humanize %></td>
         <td><%= product.noingredientes %></td>

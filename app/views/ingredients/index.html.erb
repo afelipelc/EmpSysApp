@@ -1,6 +1,6 @@
 <%- model_class = Ingredient -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+  <h1><%=t '.title', :default => "Ingredientes" %></h1>
 </div>
 <table class="table table-striped">
   <thead>
@@ -33,6 +33,6 @@
   </tbody>
 </table>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
+<%= link_to t('.new', :default => "Agregar Ingrediente"),
             new_ingredient_path,
             :class => 'btn btn-primary' %>

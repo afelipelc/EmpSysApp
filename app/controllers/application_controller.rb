@@ -13,9 +13,10 @@ class ApplicationController < ActionController::Base
   end
 
 
-  
   alias_method :current_user, :current_employee
 
+  #custom flash types
+  add_flash_types :error, :info, :sucess
   # def current_ability
   #   @current_ability ||= AccountAbility.new(current_employee)
   # end

@@ -1,12 +1,16 @@
 class UsersController < ApplicationController
 	before_action :authenticate_employee!
-	before_action :set_employee, only: [:show, :edit, :update, :destroy]
 	load_and_authorize_resource
+	before_action :set_employee, only: [:show, :edit, :update, :destroy]
 
 	def index
 		@employees = Employee.all	
 	end
 
+	def show
+		flash[:info] = 'No existe una vista de empleado, utilice Editar'
+		redirect_to :action => 'index'
+	end
 	def new
 		@employee = Employee.new
 	end
@@ -14,7 +18,7 @@ class UsersController < ApplicationController
 	  @employee = Employee.new(employee_params)
       respond_to do |format|
 	      if @employee.save
-	        format.html { redirect_to @employee, notice: 'El empleado ha sido registrado.' }
+	        format.html { redirect_to @employee, sucess: 'El empleado ha sido registrado.' }
 	        format.json { render :show, status: :created, location: @employee }
 	      else
 	        format.html { render :new }
@@ -29,7 +33,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @employee.update(employee_params)
-        format.html { redirect_to users_url, notice: 'El empleado #{@employee.nombre.humanize} ha sido actualizado.' }
+        format.html { redirect_to users_url, sucess: 'El empleado ' + @employee.nombre + ' ha sido actualizado.' }
         format.json { render :show, status: :ok, location: @employee }
       else
         format.html { render :edit }

@@ -7,11 +7,11 @@
   <dt><strong><%= model_class.human_attribute_name(:descripción) %>:</strong></dt>
   <dd><%= @product.descripcion %></dd>
   <dt><strong><%= model_class.human_attribute_name(:precio) %>:</strong></dt>
-  <dd><%= @product.precio %></dd>
+  <dd><%= number_to_currency(@product.precio) %></dd>
   <dt><strong><%= model_class.human_attribute_name(:categoría) %>:</strong></dt>
-  <dd><%= @product.categoria %></dd>
+  <dd><%= @product.categoria.humanize %></dd>
   <dt><strong><%= model_class.human_attribute_name(:subcategoría) %>:</strong></dt>
-  <dd><%= @product.subcategoria %></dd>
+  <dd><%= @product.subcategoria.humanize %></dd>
   <dt><strong><%= model_class.human_attribute_name(:no_ingredientes) %>:</strong></dt>
   <dd><%= @product.noingredientes.to_i %></dd>
   <dt><strong><%= model_class.human_attribute_name(:con_bebida) %>:</strong></dt>
