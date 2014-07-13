@@ -1,0 +1,30 @@
+<%= form_for @ingredient, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group<%= @ingredient.errors[:nombre].any? ? " error" : "" %>">
+    <%= f.label :nombre, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :nombre, :class => 'text_field' %>
+      <span class="help-inline">
+      <%= @ingredient.errors[:nombre].any? ? @ingredient.errors[:nombre].to_s[/\w([^"]*)/] : "" %></span>
+    </div>
+  </div>
+  <div class="control-group<%= @ingredient.errors[:categoria].any? ? " error" : "" %>">
+    <%= f.label :aplica_en, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :categoria, options_for_select(Ingredient::categoria.collect { |s| [s[0].humanize, s[0]] }, selected: @ingredient.categoria) %>
+      <span class="help-inline">
+      <%= @ingredient.errors[:categoria].any? ? @ingredient.errors[:categoria].to_s[/\w([^"]*)/] : "" %></span>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :especialmente_para, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :subcategoria, options_for_select(Ingredient::subcategoria.collect { |s| [s[0].humanize, s[0]] }, selected: @ingredient.subcategoria) %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary', :value=> "Guardar" %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancelar")),
+                ingredients_path, :class => 'btn' %>
+  </div>
+<% end %>

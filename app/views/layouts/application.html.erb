@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "EmporiosApp" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "MiApp" %></title>
     <%= csrf_meta_tags %>
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -46,14 +46,25 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">EmporiosApp</a>
+          <a class="brand" href="/">Felipe App</a>
           <div class="container nav-collapse">
             <ul class="nav">
-              <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
+              <li><%= link_to "Productos", products_path  %></li>
+              <li><%= link_to "Empleados", users_path  %></li>
             </ul>
-          </div><!--/.nav-collapse -->
+            <span class="navbar-text pull-right">
+              <% if employee_signed_in? %>
+                Usuario: <strong><%= current_employee.nombre %></strong>.
+                <%= link_to 'Editar perfil', edit_employee_registration_path, :class => 'navbar-link' %> |
+                <%= link_to "Salir", destroy_employee_session_path, method: :delete, :class => 'navbar-link'  %>
+              <% else %>
+                <%#= link_to "Sign up", new_employee_registration_path, :class => 'navbar-link'  %> |
+                <%= link_to "Ingresar", new_employee_session_path, :class => 'navbar-link'  %>
+                <% end %>
+
+                </div><!--/.nav-collapse -->
+            </span>
+
         </div>
       </div>
     </div>
@@ -62,23 +73,19 @@
         <div class="row">
           <div class="span9">
             <%= bootstrap_flash %>
+            <%= render :partial => 'shared/messages' %>
             <%= yield %>
           </div>
           <div class="span3">
             <div class="well sidebar-nav">
-              <h3>Sidebar</h3>
-              <ul class="nav nav-list">
-                <li class="nav-header">Sidebar</li>
-                <li><%= link_to "Link1", "/path1"  %></li>
-                <li><%= link_to "Link2", "/path2"  %></li>
-                <li><%= link_to "Link3", "/path3"  %></li>
-              </ul>
+              <h3>Opciones</h3>
+              <%= render :partial => 'shared/sidebar' %>
             </div><!--/.well -->
           </div><!--/span-->
         </div><!--/row-->
 
       <footer>
-        <p>&copy; Company 2014</p>
+        <p>&copy; AFelipe LC 2014</p>
       </footer>
 
     </div> <!-- /container -->

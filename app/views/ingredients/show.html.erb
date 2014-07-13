@@ -1,0 +1,25 @@
+<%- model_class = Ingredient -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => "Ingrediente" %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:nombre) %>:</strong></dt>
+  <dd><%= @ingredient.nombre %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:categoria) %>:</strong></dt>
+  <dd><%= @ingredient.categoria.humanize %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:subcategoria) %>:</strong></dt>
+  <dd><%= @ingredient.subcategoria.humanize %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.regresar")),
+              ingredients_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.editar")),
+              edit_ingredient_path(@ingredient), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.eliminar")),
+              ingredient_path(@ingredient),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
