@@ -1,0 +1,62 @@
+<%= form_for @order, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :tipo, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :tipo, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :cliente, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :cliente, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :fecha, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :fecha, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :employee_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :employee_id, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :pagada, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :pagada, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :importe, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :importe, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :mesa, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :mesa, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :entregas, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :entregas, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :pedido, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :pedido, :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                orders_path, :class => 'btn' %>
+  </div>
+<% end %>

@@ -51,6 +51,7 @@
             <ul class="nav">
               <li><%= link_to "Productos", products_path  %></li>
               <li><%= link_to "Empleados", users_path  %></li>
+              <li><%= link_to "Nueva Orden", new_order_path  %></li>
             </ul>
             <span class="navbar-text pull-right">
               <% if employee_signed_in? %>
@@ -76,12 +77,14 @@
             <%= render :partial => 'shared/messages' %>
             <%= yield %>
           </div>
+          <% if params[:controller] != "orders" %>
           <div class="span3">
             <div class="well sidebar-nav">
               <h3>Opciones</h3>
               <%= render :partial => 'shared/sidebar' %>
             </div><!--/.well -->
           </div><!--/span-->
+          <% end -%>
         </div><!--/row-->
 
       <footer>

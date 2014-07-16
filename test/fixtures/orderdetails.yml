@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  order_id: 
+  product_id: 
+  cantidad: 1
+  ingredientes: MyString
+  extras: MyString
+  nota: MyString
+  importe: 9.99
+  enentrega: 1
+
+two:
+  order_id: 
+  product_id: 
+  cantidad: 1
+  ingredientes: MyString
+  extras: MyString
+  nota: MyString
+  importe: 9.99
+  enentrega: 1

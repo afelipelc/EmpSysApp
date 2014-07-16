@@ -8,6 +8,7 @@ class Ability
     elsif user.mostrador?
         alias_action :create, :read, :update, :delete, :to => :crud
         can :read, [Product, Ingredient, Extra]
+        can :crud, [Order, Sale, Orderdetail]
         #enable model array when model become complete
         #request >> pedido
         #can :crud, [Order, Request, Ordernote, Orderdetail, Phone ]
@@ -18,6 +19,7 @@ class Ability
     elsif user.mesera?
         alias_action :create, :read, :update, :to => :crud
         can :read, [Product, Ingredient, Extra]
+        can :crud, [Order, Orderdetail]
         #can :crud, [Order, Orderdetail]
         #can :read, [Employee, Product, Ingredient, Extra]
         #can :find, [Order, Product, Ingredient, Extra]

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140711175653) do
+ActiveRecord::Schema.define(version: 20140716191030) do
 
   create_table "employees", force: true do |t|
     t.string   "email",                  default: "",   null: false
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20140711175653) do
   create_table "extras", force: true do |t|
     t.string   "nombre"
     t.integer  "categoria"
-    t.float  "costo",      precision: 10, scale: 0
+    t.float    "costo"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -52,6 +52,40 @@ ActiveRecord::Schema.define(version: 20140711175653) do
     t.datetime "updated_at"
   end
 
+  create_table "orderdetails", force: true do |t|
+    t.integer  "order_id",     limit: 8
+    t.integer  "product_id"
+    t.integer  "cantidad",                                       null: false
+    t.string   "ingredientes"
+    t.string   "extras"
+    t.string   "nota"
+    t.decimal  "importe",                precision: 7, scale: 2, null: false
+    t.integer  "enentrega"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "orderdetails", ["id"], name: "id", unique: true, using: :btree
+  add_index "orderdetails", ["order_id"], name: "index_orderdetails_on_order_id", using: :btree
+  add_index "orderdetails", ["product_id"], name: "index_orderdetails_on_product_id", using: :btree
+
+  create_table "orders", force: true do |t|
+    t.integer  "tipo",                                                null: false
+    t.string   "cliente"
+    t.datetime "fecha",                                               null: false
+    t.integer  "employee_id"
+    t.boolean  "pagada",                              default: false, null: false
+    t.decimal  "importe",     precision: 7, scale: 2,                 null: false
+    t.integer  "mesa",                                default: 0,     null: false
+    t.integer  "entregas",                            default: 0,     null: false
+    t.boolean  "pedido",                              default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "orders", ["employee_id"], name: "index_orders_on_employee_id", using: :btree
+  add_index "orders", ["id"], name: "id", unique: true, using: :btree
+
   create_table "products", force: true do |t|
     t.string   "descripcion",                    null: false
     t.float    "precio",                         null: false
@@ -63,5 +97,21 @@ ActiveRecord::Schema.define(version: 20140711175653) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "sales", force: true do |t|
+    t.integer  "order_id",      limit: 8
+    t.datetime "fecha",                                           null: false
+    t.decimal  "importepagado",           precision: 7, scale: 2, null: false
+    t.decimal  "montorecibido",           precision: 7, scale: 2, null: false
+    t.decimal  "montocambio",             precision: 6, scale: 2, null: false
+    t.integer  "employee_id"
+    t.string   "nota"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sales", ["employee_id"], name: "index_sales_on_employee_id", using: :btree
+  add_index "sales", ["id"], name: "id", unique: true, using: :btree
+  add_index "sales", ["order_id"], name: "index_sales_on_order_id", using: :btree
 
 end

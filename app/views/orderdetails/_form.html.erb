@@ -1,0 +1,56 @@
+<%= form_for @orderdetail, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :order_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :order_id, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :product_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :product_id, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :cantidad, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :cantidad, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :ingredientes, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :ingredientes, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :extras, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :extras, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :nota, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :nota, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :importe, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :importe, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :enentrega, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :enentrega, :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                orderdetails_path, :class => 'btn' %>
+  </div>
+<% end %>
